@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "book")
 public class Book {
 
     @Id
@@ -25,6 +25,13 @@ public class Book {
     private boolean published;
 
     public Book() {
+    }
+
+    public Book(int id, String title, String author, boolean published) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.published = published;
     }
 
     public Book(String title, String author, boolean published) {

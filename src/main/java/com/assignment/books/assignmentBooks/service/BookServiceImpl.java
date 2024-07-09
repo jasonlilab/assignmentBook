@@ -28,8 +28,8 @@ public class BookServiceImpl implements BookService {
             if (b == null) {
                 Book newBook = new Book(reqBook.getTitle(), reqBook.getAuthor(),
                         reqBook.isPublished());
-                b = bookRepository.save(newBook);
-                return b.getId();
+                newBook = bookRepository.save(newBook);
+                return newBook.getId();
             }
         } catch (Exception e) {
             logger.error("createBook exception: ", e);
@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getBooks(String author, Boolean published) {
-        List<Book> result = new ArrayList<Book>();
+        List<Book> result = new ArrayList<>();
         try {
             if (StringUtils.isNotBlank(author) && published != null) {
                 result.addAll(bookRepository.findByAuthorIgnoreCaseAndPublished(author, published));

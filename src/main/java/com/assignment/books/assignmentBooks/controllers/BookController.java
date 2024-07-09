@@ -30,7 +30,10 @@ public class BookController {
 
             Long newBookId = bookService.createBook(reqBook);
 
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(newBookId != null ? newBookId : (long) -1);
+            if (newBookId != null) {
+                return ResponseEntity.status(HttpStatus.OK).body(newBookId);
+            }
+            return ResponseEntity.status(HttpStatus.CONFLICT).body((long) -1);
         } catch (Exception e) {
             logger.error("createBook exception: ", e);
         }

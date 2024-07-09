@@ -19,7 +19,7 @@ public class BookControllerTests {
     @Test
     public void testCreateEndpoint() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/book"))
-                .andExpect(MockMvcResultMatchers.status().isConflict());
+                .andExpect(MockMvcResultMatchers.status().isExpectationFailed());
     }
 
     @Test
@@ -30,8 +30,8 @@ public class BookControllerTests {
 
     @Test
     public void testDeleteEndpoint() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/book/1"))
-                .andExpect(MockMvcResultMatchers.status().isNotFound());
+        mockMvc.perform(MockMvcRequestBuilders.delete("/book/9999"))
+                .andExpectAll(MockMvcResultMatchers.status().isNotFound());
     }
 
 }
